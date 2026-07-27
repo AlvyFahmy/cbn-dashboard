@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitoring System | Pro Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --accent: #06b6d4;
+            --bg-gradient: radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
+                           radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%), 
+                           radial-gradient(at 100% 0%, hsla(339,49%,30%,1) 0, transparent 50%);
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --card-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: #0b0e14;
+            background-image: var(--bg-gradient);
+            background-attachment: fixed;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        .main-content {
+            flex: 1 0 auto;
+            padding: 40px 20px;
+            max-width: 1250px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .welcome-section {
+            margin-bottom: 40px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .welcome-section h2 {
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
+            font-weight: 700;
+            background: linear-gradient(to right, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+        }
+
+        .welcome-section p {
+            color: #94a3b8;
+            font-size: 1rem;
+            margin-top: 10px;
+            border-left: 3px solid var(--primary);
+            padding-left: 15px;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .card {
+            position: relative;
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 25px;
+            border-radius: 20px;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            border: 1px solid var(--card-border);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+
+        .icon-box {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 14px;
+            font-size: 1.25rem;
+        }
+
+        .card-info h3 {
+            font-size: 1.15rem;
+            color: #fff;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .card-info p {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            line-height: 1.5;
+        }
+
+        .footer-credit {
+            flex-shrink: 0;
+            padding: 30px 20px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #ffffff;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(5px);
+            border-top: 1px solid var(--card-border);
+        }
+
+        .footer-credit b {
+            color: #fff;
+            text-shadow: 0 0 12px rgba(6, 182, 212, 0.8), 0 0 5px rgba(255, 255, 255, 0.5);
+        }
+
+        .footer-credit .separator {
+            color: var(--accent);
+            margin: 0 5px;
+            font-weight: bold;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 480px) {
+            .main-content { padding: 30px 15px; }
+            .dashboard-grid { grid-template-columns: 1fr; }
+            .welcome-section h2 { font-size: 1.6rem; }
+            .footer-credit { font-size: 0.7rem; padding: 20px 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-content">
+        <header class="welcome-section">
+            <h2>Monitoring System</h2>
+            <p>Intelligence Dashboard Hub</p>
+        </header>
+
+        <div class="dashboard-grid">
+            <!-- CARD: ACTIVITY VOLUNTARY CHURN -->
+            <a href="https://script.google.com/macros/s/AKfycbyXhNIgdfx3LJcbaOHheG9qVy57VZY7mYVnTqSDHvLKrN9f0KK4KItdc4x-R4bjzijc/exec" class="card" target="_blank" rel="noopener noreferrer">
+                <div class="icon-box"><i class="fa-solid fa-phone-volume"></i></div>
+                <div class="card-info">
+                    <h3>Activity Voluntary Churn</h3>
+                    <p>Laporan hasil call customer untuk analisa & mitigasi risiko pembatalan.</p>
+                </div>
+            </a>
+
+            <!-- CARD: BUCKET FROZEN -->
+            <a href="https://alvyfahmy.github.io/customer_freeze/Monitoring_Customer_Freeze-v2.html" class="card" target="_blank" rel="noopener noreferrer">
+                <div class="icon-box"><i class="fa-solid fa-snowflake"></i></div>
+                <div class="card-info">
+                    <h3>Bucket Frozen</h3>
+                    <p>Monitoring data pembekuan customer secara real-time.</p>
+                </div>
+            </a>
+
+            <!-- CARD: AGENT RETENTION -->
+            <a href="https://alvyfahmy.github.io/Agent_Retention/Dashboard_Agent_Retention.html" class="card" target="_blank" rel="noopener noreferrer">
+                <div class="icon-box"><i class="fa-solid fa-user-shield"></i></div>
+                <div class="card-info">
+                    <h3>Agent Retention</h3>
+                    <p>Analisa performa agen dan strategi retensi berbasis data.</p>
+                </div>
+            </a>
+
+            <!-- CARD: SALES & SDV -->
+            <a href="https://alvyfahmy.github.io/visit/" class="card" target="_blank" rel="noopener noreferrer">
+                <div class="icon-box"><i class="fa-solid fa-chart-line"></i></div>
+                <div class="card-info">
+                    <h3>Sales & SDV</h3>
+                    <p>Tracking kunjungan lapangan dan konversi penjualan harian.</p>
+                </div>
+            </a>
+
+            <!-- CARD: ANALISA PROMO -->
+            <a href="https://alvyfahmy.github.io/analisa-promo/" class="card" target="_blank" rel="noopener noreferrer">
+                <div class="icon-box"><i class="fa-solid fa-tags"></i></div>
+                <div class="card-info">
+                    <h3>Analisa Promo</h3>
+                    <p>Evaluasi efektivitas kampanye promo terhadap revenue.</p>
+                </div>
+            </a>
+
+            <!-- CARD: DASHBOARD CHURN -->
+            <a href="https://alvyfahmy.github.io/churn/churn-dashboard.html" class="card" target="_blank" rel="noopener noreferrer">
+                <div class="icon-box"><i class="fa-solid fa-user-slash"></i></div>
+                <div class="card-info">
+                    <h3>Dashboard Churn</h3>
+                    <p>Analisa risiko dan mitigasi kehilangan pelanggan.</p>
+                </div>
+            </a>
+
+            <!-- CARD: EOM CHURN PROJECTION -->
+            <a href="https://dhy-519.github.io/cbn-crm/eom_churn_rate_projection.html" class="card" target="_blank" rel="noopener noreferrer">
+                <div class="icon-box"><i class="fa-solid fa-arrow-trend-down"></i></div>
+                <div class="card-info">
+                    <h3>EOM Churn Projection</h3>
+                    <p>Proyeksi tingkat churn pada akhir bulan (End of Month).</p>
+                </div>
+            </a>
+
+            <!-- CARD: TRACKING CR PROJECT -->
+            <a href="https://alvyfahmy.github.io/tracking-cr/" class="card" target="_blank" rel="noopener noreferrer">
+                <div class="icon-box"><i class="fa-solid fa-list-check"></i></div>
+                <div class="card-info">
+                    <h3>Tracking CR Project</h3>
+                    <p>Monitoring dan perkembangan status Change Request (CR) project secara sistematis.</p>
+                </div>
+            </a>
+
+            <!-- CARD: CVM QA -->
+            <div class="card" onclick="window.open('https://ai.studio/apps/7e9bbd5a-2de2-4d4a-92b6-5dd99da17d08?fullscreenApplet=true', '_blank');">
+                <div class="icon-box"><i class="fa-solid fa-clipboard-check"></i></div>
+                <div class="card-info">
+                    <h3>CVM QA</h3>
+                    <p>Quality assurance percakapan retensi dan validasi informasi promo retain customer.</p>
+                </div>
+            </div>
+
+            <!-- CARD: KAMUS TEAM RETENTION -->
+            <a href="https://alvyfahmy.github.io/CVM/" class="card" target="_blank" rel="noopener noreferrer">
+                <div class="icon-box"><i class="fa-solid fa-book-bookmark"></i></div>
+                <div class="card-info">
+                    <h3>Kamus Team Retention</h3>
+                    <p>Strategi penawaran promo, panduan percakapan, kalkulator product lengkap.</p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <footer class="footer-credit">
+        POWERED BY <b>ALVY FAHMY</b> <span class="separator">&times;</span> <b>GOOGLE GEMINI AI</b>
+    </footer>
+
+</body>
+</html>
